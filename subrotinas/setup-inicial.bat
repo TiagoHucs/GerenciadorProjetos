@@ -1,12 +1,13 @@
 REM =============================
 REM Arquivos de configuracao
 REM =============================
-set CONFIG_PROJETOS=%~dp0config-projetos.txt
-set CONFIG_GERAL=%~dp0config-geral.txt
+
+set CONFIG_PROJETOS=%ROOT%config\config-projetos.conf
+set CONFIG_GERAL=%ROOT%config\config-geral.conf
 
 if not exist "%CONFIG_PROJETOS%" (
     echo Arquivo projetos-config.txt nao encontrado!
-    pause
+    call "%ROOT%subrotinas\adicionar-projeto.bat"
     exit /b
 )
 

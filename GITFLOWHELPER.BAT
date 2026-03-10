@@ -1,8 +1,10 @@
 @echo off
 setlocal enabledelayedexpansion
 
-call setup.bat
-call selecao-projeto.bat
+set ROOT=%~dp0
+
+call "%ROOT%subrotinas\setup-inicial.bat"
+call "%ROOT%subrotinas\selecao-projeto.bat"
 
 if errorlevel 1 (
     echo Erro detectado. Encerrando script principal.
