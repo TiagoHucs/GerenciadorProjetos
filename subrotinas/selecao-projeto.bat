@@ -34,7 +34,7 @@ REM =============================
 set POM=!PROJETO_PATH!\pom.xml
 
 if not exist "!POM!" (
-    echo pom.xml nao encontrado no projeto!
+    echo pom.xml nao encontrado no caminho: !PROJETO_PATH!\pom.xml
     pause
     exit /b 1
 )
