@@ -24,17 +24,18 @@ set PROJETO_NOME=!PROJETO%ESCOLHA%!
 set PROJETO_PATH=!CAMINHO%ESCOLHA%!
 
 echo.
-echo Projeto selecionado: !PROJETO_NOME!
-echo Caminho: !PROJETO_PATH!
+echo Projeto selecionado: "%PROJETO_NOME%"
+echo Caminho: "%PROJETO_PATH%"
 echo.
 
 REM =============================
 REM Caminho do pom.xml
 REM =============================
-set POM=!PROJETO_PATH!\pom.xml
+
+set POM=!PROJETO_PATH!
 
 if not exist "!POM!" (
-    echo pom.xml nao encontrado no caminho: !PROJETO_PATH!\pom.xml
+    echo pom.xml nao encontrado no caminho: !PROJETO_PATH!
     pause
     exit /b 1
 )
