@@ -17,6 +17,7 @@ if exist %CONFIG% (
     echo 3 - Consultar versao
     echo 4 - Verifica status
     echo 5 - Atualizar codigo
+    echo 6 - Atualizar este gerenciador
 )
 
 echo 0 - Sair
@@ -31,6 +32,7 @@ if exist %CONFIG% (
     if "%opcao%"=="3" call sub-rotinas\consultar-versao.bat
     if "%opcao%"=="4" call sub-rotinas\verifica-status.bat
     if "%opcao%"=="5" call sub-rotinas\atualizar-codigo.bat
+    if "%opcao%"=="6" call sub-rotinas\atualiza-sistema.bat
 )
 
 if "%opcao%"=="0" goto SAIR

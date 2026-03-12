@@ -10,7 +10,7 @@ if not exist "%ATUAL%" (
 )
 
 REM lê nome e caminho do projeto
-for /f "tokens=1,2 delims=|" %%a in ("%ATUAL%") do (
+for /f "tokens=1,2 delims=|" %%a in (%ATUAL%) do (
     set NOME=%%a
     set CAMINHO=%%b
 )
