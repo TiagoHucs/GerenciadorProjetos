@@ -55,7 +55,7 @@ echo O comando par atualizacao do projeto é : %COMANDO%
 set /p RESP=deseja que eu execute? (s/n) 
 
 if "%RESP%"=="s" (
-    %CAMINHO%\%COMANDO%
+    mvn -f %CAMINHO% -DnewVersion=%NOVA_VERSAO% -DgenerateBackupPoms=false
 )
 
 pause
