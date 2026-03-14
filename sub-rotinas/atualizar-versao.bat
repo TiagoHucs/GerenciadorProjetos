@@ -15,9 +15,6 @@ for /f "tokens=1,2 delims=|" %%a in (%ATUAL%) do (
     set CAMINHO=%%b
 )
 
-echo =============================
-echo Verificando versao do projeto
-echo =============================
 echo Projeto : %NOME%
 echo Caminho : %CAMINHO%
 echo.
@@ -34,6 +31,8 @@ if not exist "%POM%" (
     exit /b 3
 )
 
+
+REM lê a versao
 set VERSAO=
 
 for /f "delims=" %%V in ('powershell -NoProfile -Command ^
@@ -47,6 +46,9 @@ if not defined VERSAO (
 )
 
 echo Versao do projeto: !VERSAO!
+
+
+REM solicitar nova versao
 set /p NOVA_VERSAO=Para qual versão gostaria de atualizar o projeto: 
 
 set COMANDO=mvn versions:set -DnewVersion=%NOVA_VERSAO% -DgenerateBackupPoms=false
@@ -55,7 +57,7 @@ echo O comando par atualizacao do projeto é : %COMANDO%
 set /p RESP=deseja que eu execute? (s/n) 
 
 if "%RESP%"=="s" (
-    mvn -f %CAMINHO% -DnewVersion=%NOVA_VERSAO% -DgenerateBackupPoms=false
+    mvn -f %CAMINHO%\pom.xml versions:set -DnewVersion=%NOVA_VERSAO% -DgenerateBackupPoms=false
 )
 
 pause

@@ -26,6 +26,7 @@ echo 0 - Sair
 echo.
 
 set /p opcao=Escolha: 
+echo.
 
 if "%opcao%"=="1" call sub-rotinas\gerenciar-projetos.bat
 

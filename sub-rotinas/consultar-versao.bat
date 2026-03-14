@@ -15,9 +15,6 @@ for /f "tokens=1,2 delims=|" %%a in (%ATUAL%) do (
     set CAMINHO=%%b
 )
 
-echo =============================
-echo Verificando versao do projeto
-echo =============================
 echo Projeto : %NOME%
 echo Caminho : %CAMINHO%
 echo.

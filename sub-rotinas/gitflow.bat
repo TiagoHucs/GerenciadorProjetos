@@ -1,4 +1,4 @@
-@echo off
+
 setlocal EnableDelayedExpansion
 
 set ATUAL=dados\projeto-atual.tmp
@@ -9,29 +9,23 @@ if not exist "%ATUAL%" (
     exit /b 1
 )
 
-:MENU
-cls
-echo ============================
-echo GITFLOW
-echo ============================
-echo.
-
-echo 1 - Consultar versao
-echo 0 - Voltar
-echo.
-
-set /p op=Escolha: 
-
-if "%op%"=="1" goto CONSULTA_VERSAO
-if "%op%"=="0" exit /b 0
-
-:CONSULTA_VERSAO
-
 REM lê nome e caminho do projeto
 for /f "tokens=1,2 delims=|" %%a in (%ATUAL%) do (
     set NOME=%%a
     set CAMINHO=%%b
 )
+
+:CHECKOUT_DEVELOP
+
+REM vai pro diretorio
+pushd %CAMINHO%
+git checkout .
+git checkout develop
+git pull
+REM volta pro diretorio
+popd
+
+:CONSULTA_VERSAO
 
 echo =============================
 echo Verificando versao do projeto
@@ -65,5 +59,27 @@ if not defined VERSAO (
 )
 
 echo Versao do projeto: !VERSAO!
+
+
+:SETAR_NOVA_VERSAO
+
+set /p NOVA_VERSAO=Para qual versão gostaria de atualizar o projeto: 
+
+set COMANDO=mvn -f %CAMINHO%\pom.xml versions:set -DnewVersion=%NOVA_VERSAO% -DgenerateBackupPoms=false
+
+echo O comando par atualizacao do projeto é : 
+echo %COMANDO%
+
+set /p RESP=deseja que eu execute? (s/n) 
+
+if "%RESP%"=="s" (
+    %COMANDO%
+)
+
+
+
+
+
+
 pause
 goto MENU
