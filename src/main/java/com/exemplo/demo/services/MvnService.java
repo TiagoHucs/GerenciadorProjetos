@@ -1,6 +1,7 @@
 package com.exemplo.demo.services;
 
 import com.exemplo.demo.model.Projeto;
+import com.exemplo.demo.model.Versao;
 import org.apache.maven.model.Model;
 import org.apache.maven.model.io.xpp3.MavenXpp3Reader;
 import org.springframework.stereotype.Service;
@@ -25,4 +26,5 @@ public class MvnService {
             return "N/A";
         }
     }
+
 }

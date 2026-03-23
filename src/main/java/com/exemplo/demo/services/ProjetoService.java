@@ -3,6 +3,8 @@ package com.exemplo.demo.services;
 import com.exemplo.demo.model.Projeto;
 import com.exemplo.demo.model.ProjetoDTO;
 import com.exemplo.demo.repository.ProjetoRepository;
+import com.exemplo.demo.util.Utils;
+import jdk.jshell.execution.Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -28,7 +30,9 @@ public class ProjetoService {
     public ProjetoDTO detalhar(Long id){
         Projeto proj = repository.findById(id).orElse(null);
         return new ProjetoDTO(proj.getId(), proj.getNome(), proj.getDiretorio(),
-                mvnService.getVersao(proj), gitService.getBranch(proj));
+                mvnService.getVersao(proj),
+                Utils.convert(mvnService.getVersao(proj)),
+                gitService.getBranch(proj));
     }
 
     public List<Projeto> listar(){
